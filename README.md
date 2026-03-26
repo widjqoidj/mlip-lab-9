@@ -152,14 +152,14 @@ Fill in the following table based on your experience (replace the blanks):
 
 | | DVC | Roar |
 |---|---|---|
-| **Philosophy** | ____________ | ____________ |
-| **Config required** | ____________ | ____________ |
-| **How is the DAG defined?** | ____________ | ____________ |
-| **What happens on re-run?** | ____________ | ____________ |
-| **How are artifacts versioned?** | ____________ | ____________ |
-| **Reproducibility mechanism** | ____________ | ____________ |
-| **Collaboration model** | ____________ | ____________ |
-| **Platform support** | ____________ | ____________ |
+| **Philosophy** | Declarative pipeline-as-code | Observational lineage-from-runtime |
+| **Config required** | Requires `dvc.yaml`, `params.yaml`, and remote setup | Minimal setup (`roar init`); no pipeline YAML |
+| **How is the DAG defined?** | Explicitly by user in `dvc.yaml` stages/deps/outs | Inferred automatically from file I/O during `roar run` |
+| **What happens on re-run?** | Hash-based selective re-run; only changed stages and downstream run | You re-run commands manually; each run is recorded as a new job |
+| **How are artifacts versioned?** | Content hashes in DVC cache/remotes, tied to Git commits/experiments | Artifact/job hashes in Roar lineage DB; optionally registered on GLaaS |
+| **Reproducibility mechanism** | `git checkout` + `dvc pull/checkout/repro` | Re-run recorded commands with tracked inputs, outputs, and environment metadata |
+| **Collaboration model** | Team shares Git repo + DVC remote + pipeline config | Team shares lineage and artifacts via GLaaS/job history |
+| **Platform support** | macOS/Linux/Windows (native) | macOS/Linux native; Windows via WSL2 |
 
 
 ## Resources
